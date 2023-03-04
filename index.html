@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Expense Tracker</h1>
+      <form>
+        <div class="form-group">
+          <label for="amount">Choose expenses amount:</label>
+          <div class="input-group">
+            <div class="input-group-addon">$</div>
+            <input type="number" id="amount" class="form-control" placeholder="Enter amount">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="description">Description:</label>
+          <input type="text" id="description" class="form-control" placeholder="Enter description">
+        </div>
+        <div class="form-group">
+          <label for="category">Choose a category:</label>
+          <select id="category" class="form-control">
+            <option value="movie">Movie</option>
+            <option value="vacation">Vacation</option>
+            <option value="trip">Trip</option>
+          </select>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="addExpense()">Add Expense</button>
+      </form>
+      <br>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Amount</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody id="expenseTableBody">
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      function addExpense() {
+        var amount = $('#amount').val();
+        var description = $('#description').val();
+        var category = $('#category').val();
+        var newRow = '<tr><td>' + amount + '</td><td>' + description + '</td><td>' + category + '</td><td><button type="button" class="btn btn-primary">Edit</button></td><td><button type="button" class="btn btn-danger">Delete</button></td></tr>';
+        $('#expenseTableBody').append(newRow);
+        $('#amount').val('');
+        $('#description').val('');
+        $('#category').val('movie');
+      }
+    </script>
+  </body>
+</html>
+<script src="index.js"></script>

@@ -54,13 +54,22 @@
         var amount = $('#amount').val();
         var description = $('#description').val();
         var category = $('#category').val();
-        var newRow = '<tr><td>' + amount + '</td><td>' + description + '</td><td>' + category + '</td><td><button type="button" class="btn btn-primary">Edit</button></td><td><button type="button" class="btn btn-danger">Delete</button></td></tr>';
+        var expense = { amount: amount, description: description, category: category };
+        var expenses = JSON.parse(localStorage.getItem('expenses')) || [];
+        expenses.push(expense);
+        localStorage.setItem('expenses', JSON.stringify(expenses));
+        var newRow = '<tr><td>' + amount + '</td><td>' + description + '</td><td>' + category + '</td><td><button type="button" class="btn btn-primary">Edit</button></td><td><button type="button" class="btn btn-danger" onclick="deleteExpense(this)">Delete</button></td></tr>';
         $('#expenseTableBody').append(newRow);
         $('#amount').val('');
         $('#description').val('');
         $('#category').val('movie');
       }
+
+      function deleteExpense(btn) {
+        var row = btn.parentNode.parentNode;
+        row.parentNode.removeChild(row);
+      }
     </script>
   </body>
-</html> 
+</html>
 <script src="index.js"></script>
